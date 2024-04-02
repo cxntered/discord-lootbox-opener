@@ -103,7 +103,7 @@ if __name__ == "__main__":
                 print(f"{Fore.RED}You must enter the amount of lootboxes you want to open!")
                 continue
             delay = input(f"{Fore.LIGHTMAGENTA_EX}[{strftime("%H:%M:%S", localtime())}] | Enter the delay between each lootbox opening in seconds (default is 3): {Style.RESET_ALL}")
-            if not delay:
+            if not delay or not delay.isdigit():
                 delay = 3
         except KeyboardInterrupt:
             print(f"\n{Fore.RED}Exiting...")
