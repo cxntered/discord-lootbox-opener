@@ -49,6 +49,18 @@ class DiscordLootboxOpener:
         opened_lootboxes = 0
         for i in range(self.lootboxes):
             response = requests.post("https://discord.com/api/v9/users/@me/lootboxes/open", headers=headers)
+
+            if response.status_code == 429:
+                print(f"{Fore.YELLOW}[{strftime("%H:%M:%S", localtime())}] | Rate limited, waiting 5 seconds... ({i+1}/{self.lootboxes})")
+                sleep(5)
+            elif response.status_code == 401:
+                print(f"{Fore.RED}[{strftime("%H:%M:%S", localtime())}] | Error: 401 Unauthorized! Did you enter an invalid token? ({i+1}/{self.lootboxes})")
+                print(f"{Fore.RED}Exiting due to invalid token...")
+                return
+            elif response.status_code != 200:
+                print(f"{Fore.RED}[{strftime("%H:%M:%S", localtime())}] | Failed to open lootbox. Error code: {response.status_code} ({i+1}/{self.lootboxes})")
+                break
+
             data = response.json()
             opened_item_id = data["opened_item"]
             opened_item_name = items[str(opened_item_id)]
@@ -58,15 +70,6 @@ class DiscordLootboxOpener:
             if response.status_code == 200:
                 article = "an" if opened_item_name[0].lower() in "aeiou" else "a"
                 print(f"{Fore.GREEN}[{strftime("%H:%M:%S", localtime())}] | You got {article} {Style.BRIGHT}{opened_item_name}{Style.NORMAL}! You now have {opened_item_count} of them! ({i+1}/{self.lootboxes})")
-            elif response.status_code == 429:
-                print(f"{Fore.YELLOW}[{strftime("%H:%M:%S", localtime())}] | Rate limited, waiting 5 seconds... ({i+1}/{self.lootboxes})")
-                sleep(5)
-            elif response.status_code == 401:
-                print(f"{Fore.RED}[{strftime("%H:%M:%S", localtime())}] | Error: 401 Unauthorized! Did you enter an invalid token? ({i+1}/{self.lootboxes})")
-                break
-            else:
-                print(f"{Fore.RED}[{strftime("%H:%M:%S", localtime())}] | Failed to open lootbox. Error code: {response.status_code} ({i+1}/{self.lootboxes})")
-                break
 
             if i != self.lootboxes - 1:
                 sleep(self.delay)
