@@ -98,13 +98,22 @@ if __name__ == "__main__":
             if not token:
                 print(f"{Fore.RED}You must enter a token!")
                 continue
-            lootboxes = input(f"{Fore.LIGHTMAGENTA_EX}[{strftime("%H:%M:%S", localtime())}] | Enter the amount of lootboxes you want to open: {Style.RESET_ALL}")
-            if not lootboxes or not lootboxes.isdigit() or int(lootboxes) == 0:
-                print(f"{Fore.RED}You must enter the amount of lootboxes you want to open!")
-                continue
-            delay = input(f"{Fore.LIGHTMAGENTA_EX}[{strftime("%H:%M:%S", localtime())}] | Enter the delay between each lootbox opening in seconds (default is 3): {Style.RESET_ALL}")
-            if not delay or not delay.isdigit():
-                delay = 3
+
+            while True:
+                lootboxes = input(f"{Fore.LIGHTMAGENTA_EX}[{strftime("%H:%M:%S", localtime())}] | Enter the amount of lootboxes you want to open: {Style.RESET_ALL}")
+                if not lootboxes or not lootboxes.isdigit() or int(lootboxes) < 0:
+                    print(f"{Fore.RED}You must enter the amount of lootboxes you want to open!")
+                    continue
+                break
+
+            while True:
+                delay = input(f"{Fore.LIGHTMAGENTA_EX}[{strftime("%H:%M:%S", localtime())}] | Enter the delay between each lootbox opening in seconds (default is 3): {Style.RESET_ALL}")
+                if not delay:
+                    delay = 3
+                elif not delay.isdigit() or int(delay) < 0:
+                    print(f"{Fore.RED}You must enter a valid delay!")
+                    continue
+                break
         except KeyboardInterrupt:
             print(f"\n{Fore.RED}Exiting...")
             break
