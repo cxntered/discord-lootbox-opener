@@ -6,6 +6,10 @@ A very simple, epic, and awesome Python script, made for Discord's April Fools 2
 
 </div>
 
+## Disclaimer
+
+Although it is extremely unlikely that you would get banned for using this script, there is still a non-zero chance as using automated tools to interact with Discord's API is against their terms of service. **Please use at your own risk.** I am not responsible for any consequences that may arise from using this script.
+
 ## Running
 
 > [!IMPORTANT]
