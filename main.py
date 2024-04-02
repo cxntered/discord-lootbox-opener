@@ -96,7 +96,7 @@ if __name__ == "__main__":
                 print(f"{Fore.RED}You must enter a token!")
                 continue
             lootboxes = input(f"{Fore.LIGHTMAGENTA_EX}[{strftime("%H:%M:%S", localtime())}] | Enter the amount of lootboxes you want to open: {Style.RESET_ALL}")
-            if not lootboxes:
+            if not lootboxes or not lootboxes.isdigit() or int(lootboxes) == 0:
                 print(f"{Fore.RED}You must enter the amount of lootboxes you want to open!")
                 continue
             delay = input(f"{Fore.LIGHTMAGENTA_EX}[{strftime("%H:%M:%S", localtime())}] | Enter the delay between each lootbox opening in seconds (default is 3): {Style.RESET_ALL}")
