@@ -48,7 +48,7 @@ class DiscordLootboxOpener:
     def open_lootboxes(self):
         opened_lootboxes = 0
         for i in range(self.lootboxes):
-            response = requests.post("https://discord.com/api/v9/users/@me/lootboxes/open", headers=headers)
+            response = requests.post(url=url, headers=headers)
 
             if response.status_code == 429:
                 print(f"{Fore.YELLOW}[{strftime("%H:%M:%S", localtime())}] | Rate limited, waiting 5 seconds... ({i+1}/{self.lootboxes})")
