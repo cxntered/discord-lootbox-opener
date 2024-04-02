@@ -2,7 +2,7 @@
 
 # `discord-lootbox-opener`
 
-A very simple, epic, and awesome Python script that opens Discord lootboxes for you!
+A very simple, epic, and awesome Python script, made for Discord's April Fools 2024, which automatically opens lootboxes for you!
 
 </div>
 
